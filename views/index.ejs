@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Products</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+
+<body>
+
+  <h1>Product List</h1>
+  <main>
+    <form action="/products" method="POST">
+      <label>Product name</label>
+      <input type="text" name="name" placeholder="Product Name" required>
+
+      <label>Product price</label>
+      <input type="text" name="price" placeholder="Product Price" required>
+
+      <button type="submit">Add Product</button>
+    </form>    
+
+  <% if (product.length> 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Edits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% product.forEach(p=> { %>
+          <tr>
+            <td>
+              <%= p.id %>
+            </td>
+            <td>
+              <%= p.name %>
+            </td>
+            <td>$<%= p.price.toFixed(2) %>
+            </td>
+            <td>
+              <form action="/products/<%= p.id %>?_method=PUT" method="POST" style="margin-bottom: 5px;">
+                <input type="text" name="name" placeholder="New Name" required>
+                <input type="text" name="price" placeholder="New Price" required>
+                <button type="submit" class="update">Update</button>
+              </form>
+              <form action="/products/<%= p.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="delete">Delete</button>
+              </form>              
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+    <% } else { %>
+      <p style="text-align: center;">No products found.</p>
+      <% } %>
+
+
+  </main>
+
+
+</body>
+
+</html>

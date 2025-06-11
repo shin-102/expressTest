@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>Login</h1>
+    <main>
+      <form action="/users/login" method="GET" class="login" >
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value=""" placeholder="Enter your username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value="" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="/signup">Register here</a></p>
+        <p><%= error %></p>
+      </form>
+    </main>
+  </body>
+</html>
